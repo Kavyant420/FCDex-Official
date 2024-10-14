@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FC Mobile Pack Animation</title>
+  <style>
+    body {
+      background-color: #222;
+      color: #eee;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      background-color: #111;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    .pack {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://imgur.com/a/kJQG7Py");
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .pack.show {
+      opacity: 1;
+    }
+
+    .glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, #ff0000, #0000ff, #ff0000);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .glow.show {
+      opacity: 0.5;
+    }
+
+    .flash-text-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .flash-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #eee;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .flash-text.show {
+      opacity: 1;
+    }
+
+    nav button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #fc5757;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    nav button:hover {
+      background-color: #e63946;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Looking for a return?</h1>
+    <nav>
+      <button onclick="location.href='index.html'">Homepage</button>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="pack"></div>
+    <div class="glow"></div>
+    
+    <div class="flash-text-container">
+      <div class="flash-text">This</div>
+      <div class="flash-text">Feature</div>
+      <div class="flash-text">is</div>
+      <div class="flash-text">Being</div>
+      <div class="flash-text">Coded</div>
+      <div class="flash-text">Please</div>
+      <div class="flash-text">Be</div>
+      <div class="flash-text">Patient!</div>
+    </div>
+  </div>
+
+  <script>
+    const pack = document.querySelector('.pack');
+    const glow = document.querySelector('.glow');
+    const flashTexts = document.querySelectorAll('.flash-text');
+
+    let flashIndex = 0;
+
+    setTimeout(() => {
+      pack.classList.add('show');
+      glow.classList.add('show');
+
+      flashTexts[flashIndex].classList.add('show');
+
+      setInterval(() => {
+        flashTexts[flashIndex].classList.remove('show');
+        flashIndex = (flashIndex + 1) % flashTexts.length;
+        flashTexts[flashIndex].classList.add('show');
+      }, 1000);
+    }, 1000); 
+  </script>
+</body>
+</html>

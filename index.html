@@ -101,7 +101,7 @@
         <div class="sub-nav">
             <button onclick="showLoadingAndRedirec2()">Packs</button>
             <button onclick="showLoadingAndRedirect()">Lineup Builder</button>
-            <button onclick="location.href='#drafts'">Drafts</button>
+            <button onclick="showLoadingAndRedirect3()">Division Rivals</button>
         </div>
     </main>
 
@@ -128,6 +128,14 @@
             
             setTimeout(() => {
                 window.location.href = 'packs.html';
+            }, 3000);
+        }
+        function showLoadingAndRedirect3() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+            
+            setTimeout(() => {
+                window.location.href = 'dr.html';
             }, 3000);
         }
     </script>

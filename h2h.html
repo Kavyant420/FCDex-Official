@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Squad Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            place-items: center;
+        }
+        .pitch {
+            background-color: #6ab150;
+            width: 600px;
+            height: 900px;
+            margin: 20px auto;
+            position: relative;
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+        .pitch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 900px;
+            border: 2px solid white;
+            box-sizing: border-box;
+        }
+        .center-circle {
+            position: absolute;
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
+            width: 100px;
+            height: 100px;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+        .center-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: white;
+        }
+        .goal-area-left, .goal-area-right {
+            position: absolute;
+            width: 160px;
+            height: 60px;
+            border: 2px solid white;
+        }
+        .goal-area-left {
+            bottom: 10px;
+            left: calc(50% - 80px);
+        }
+        .goal-area-right {
+            top: 10px;
+            left: calc(50% - 80px);
+        }
+        .position {
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            width: 100px;
+            height: 50px;
+        }
+        .gk {
+            bottom: 40px;
+            left: calc(50% - 50px);
+        }
+        .cb1 {
+            bottom: 160px;
+            left: calc(50% - 120px);
+        }
+        .cb2 {
+            bottom: 160px;
+            left: calc(50% + 20px);
+        }
+        .lb {
+            bottom: 220px;
+            left: 80px;
+        }
+        .rb {
+            bottom: 220px;
+            right: 80px;
+        }
+        .cm1 {
+            bottom: 360px;
+            left: calc(50% - 150px);
+        }
+        .cm2 {
+            bottom: 360px;
+            left: calc(50% + 100px);
+        }
+        .cm3 {
+            bottom: 400px;
+            left: calc(50% - 50px);
+        }
+        .lw {
+            bottom: 560px;
+            left: 80px;
+        }
+        .rw {
+            bottom: 560px;
+            right: 80px;
+        }
+        .st {
+            bottom: 600px;
+            left: calc(50% - 50px);
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .suggestions {
+            background-color: white;
+            border: 1px solid #ccc;
+            max-height: 100px;
+            overflow-y: auto;
+            position: absolute;
+            z-index: 100;
+            width: 100%;
+        }
+        .suggestions div {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestions div:hover {
+            background-color: #f0f0f0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #view{
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+        view:hover{
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>FIFA 4-3-3 Squad</h1>
+    <div class="pitch" id="pitch">
+        <div class="center-circle"></div>
+        <div class="center-line"></div>
+        <div class="goal-area-left"></div>
+        <div class="goal-area-right"></div>
+        <div class="position gk">
+            <input type="text" placeholder="GK" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position cb1">
+            <input type="text" placeholder="CB" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position cb2">
+            <input type="text" placeholder="CB" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position lb">
+            <input type="text" placeholder="LB" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position rb">
+            <input type="text" placeholder="RB" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position cm1">
+            <input type="text" placeholder="CM" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position cm2">
+            <input type="text" placeholder="CM" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position cm3">
+            <input type="text" placeholder="CM" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position lw">
+            <input type="text" placeholder="LW" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position rw">
+            <input type="text" placeholder="RW" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+        <div class="position st">
+            <input type="text" placeholder="ST" oninput="showSuggestions(this)">
+            <div class="suggestions"></div>
+        </div>
+    </div>
+    <button onclick="saveAsImage()">Save as Image</button> <button id="view">View Squad</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        
+        const players = ['Bellingham', 'Benzema', 'Messi', 'Ronaldo', 'Mbappe', 'Neymar', 'Lewandowski', 'De Bruyne', 'Haaland', 'Salah', 'Modric', 'Kane', 'Griezmann', 'Mane', 'Kimmich', 'Alisson', 'Ederson', 'Courtois', 'Van Dijk', 'Alexander-Arnold', 'Davies', 'Robertson', 'Ramos', 'Varane', 'Dias', 'Hakimi', 'Pogba'];
+
+        function showSuggestions(input) {
+            const suggestionBox = input.nextElementSibling;
+            suggestionBox.innerHTML = '';
+            const query = input.value.toLowerCase();
+            if (query.length > 0) {
+                const matches = players.filter(player => player.toLowerCase().includes(query));
+                matches.forEach(match => {
+                    const div = document.createElement('div');
+                    div.textContent = match;
+                    div.onclick = function() {
+                        input.value = match;
+                        suggestionBox.innerHTML = '';
+                    };
+                    suggestionBox.appendChild(div);
+                });
+            }
+        }
+
+        async function saveAsImage() {
+        alert('Saved your team.');
+            const pitch = document.getElementById('pitch');
+            try {
+                const canvas = await html2canvas(pitch);
+                const link = document.createElement('a');
+                link.download = 'fifa_squad.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                localStorage.setItem('squadImage', link.href);
+            } catch (error) {
+                console.error('Error saving image:', error);
+            }
+        }
+        document.getElementById("view").onclick = function(){
+            window.location.href = 'display.html';
+        }
+    </script>
+</body>
+</html>

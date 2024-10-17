@@ -29,13 +29,24 @@
         button:hover {
             background-color: #45a049;
         }
+        #webhookUrl {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <h1>Your FIFA Squad Lineup</h1>
     <img id="squadImage" alt="Your squad lineup will appear here.">
     <br>
-    <button onclick="window.location.href='h2h.html'">Back to Builder</button>
+    <input type="text" id="webhookUrl" placeholder="Enter Discord Webhook URL" />
+    <br>
+    <button onclick="window.location.href='index.html'">Back to Builder</button>
+    <button onclick="sendImageToDiscord()">Send Image to Discord</button>
 
     <script>
         window.onload = function() {
@@ -44,6 +55,42 @@
                 document.getElementById('squadImage').src = imageUrl;
             } else {
                 document.getElementById('squadImage').alt = "No squad image found. Please create a squad first.";
+            }
+        }
+
+        async function sendImageToDiscord() {
+            const imageUrl = localStorage.getItem('squadImage');
+            const webhookUrl = document.getElementById('webhookUrl').value.trim();
+
+            if (!webhookUrl) {
+                alert('Please enter a webhook URL.');
+                return;
+            }
+
+            if (!imageUrl) {
+                alert('No image found! Please create an image first.');
+                return;
+            }
+
+            try {
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const formData = new FormData();
+                formData.append('file', blob, 'fifa_squad.png');
+
+                const discordResponse = await fetch(webhookUrl, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (discordResponse.ok) {
+                    alert('Image sent to Discord successfully!');
+                } else {
+                    alert('Failed to send image to Discord. Status: ' + discordResponse.status);
+                }
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+                alert('Error sending image to Discord.');
             }
         }
     </script>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .credits-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #ff8c00;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .credits {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .credit {
+            font-size: 1.6em;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+            transform: translateY(30px);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            border: 2px solid #444;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        .credit:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .credit-name {
+            font-size: 1.9em;
+            font-weight: bold;
+            color: #ff8c00;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .credit-description {
+            font-size: 1.3em;
+            color: #aaa;
+            opacity: 0;
+            animation: fadeIn 3s ease-out forwards;
+            transform: translateY(30px);
+            transition: opacity 0.3s ease-in-out;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .credit:hover .credit-description {
+            opacity: 1;
+        }
+
+        .thought {
+            font-size: 1.6em;
+            color: #ff8c00;
+            opacity: 0;
+            margin-top: 40px;
+            animation: fadeIn 4s ease-out forwards;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .credit:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+        .credit:nth-child(2) {
+            animation-delay: 1s;
+        }
+        .credit:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+        .credit:nth-child(4) {
+            animation-delay: 2s;
+        }
+        .credit:nth-child(5) {
+            animation-delay: 2.5s;
+        }
+
+        .thought {
+            animation-delay: 3s;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.4em;
+            }
+
+            .credit {
+                font-size: 1.4em;
+                width: 90%;
+            }
+
+            .credit-name {
+                font-size: 1.7em;
+            }
+
+            .credit-description {
+                font-size: 1.1em;
+            }
+
+            .thought {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .credits-container {
+                padding: 15px;
+            }
+
+            .credit-name {
+                font-size: 1.6em;
+            }
+
+            .credit-description {
+                font-size: 1em;
+            }
+
+            .thought {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="credits-container">
+        <h1>Credits</h1>
+        <div class="credits">
+            <div class="credit">
+                <div class="credit-name">Kavyant</div>
+                <div class="credit-description">Main Coder (FCDex Coder): Responsible for the main development and coding of the project, bringing ideas to life through FCDex Coder.</div>
+            </div>
+
+            <div class="credit">
+                <div class="credit-name">Viktor</div>
+                <div class="credit-description">Team Head and Server Manager: Leads the team with dedication, ensures the server is up and running, and manages all technical aspects.</div>
+            </div>
+
+            <div class="credit">
+                <div class="credit-name">Abba10</div>
+                <div class="credit-description">Server Promotor/Server Setup Person: Handles server promotions and ensures the smooth setup of servers for optimal performance.</div>
+            </div>
+
+            <div class="credit">
+                <div class="credit-name">NexusFC</div>
+                <div class="credit-description">Server Promotor/Idea Giver: A vital contributor in promoting the server and providing valuable ideas to drive the team forward.</div>
+            </div>
+
+            <div class="credit">
+                <div class="credit-name">Zarachne</div>
+                <div class="credit-description">Idea Giver and Python Script Executer: Provides creative ideas and executes Python scripts that are integral to the functionality of the project.</div>
+            </div>
+        </div>
+
+        <div class="thought">
+            Together, they contribute to the team's success and growth. Unity and collaboration make the dream work.
+        </div>
+    </div>
+
+</body>
+</html>
